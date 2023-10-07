@@ -1,21 +1,21 @@
 const User = require('../models/user.model');
 
-exports.findAll = async(req,res) =>{
-    console.log("find all users's products")
-
+exports.findAll = async(req, res) => {
+    console.log("Find all user's products")
+    
     try{
-        const results = await User.find({}, {username: 1, products:1 }) //to proto agkistro einai to kritirio anazitisis to opoio efoson einai adio tha mas ta epistrepsei ola
-        res.status(200).json({status:true, data:results});
-        console.log("Success in reading all user's products!");
-    }catch(err){
-        res.status(400).json({status:false, data: err});
-        console.log("Problem in reading user's products")
+     const results = await User.find({},{ username: 1, products:1 });
+     res.status(200).json({ status: true, data: results});
+     console.log("Success in reading all user's products");
+    } catch (err) {
+     res.status(400).json({ status: false, data: err });
+     console.log("Problem in reading user's products");
     }
 }
 
 exports.findOne = async (req, res) =>{
     const username = req.param.username;
-    console.log("find the user's with username". username);
+    console.log("find the user's with username", username);
 
     try{
         const results = await User.findOne({username: username}, {username:1, products:1});
